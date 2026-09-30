@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include <iomanip>
 #include <limits>
 #include <string>
 using namespace std;
@@ -39,6 +40,8 @@ int main() {
         {"The Trial of the Chicago 7", "Drama", 0, 0}
     };
 
+    cout << fixed << setprecision(2);
+
     cout << "========== MOVIE LIST ==========" << endl;
 
     for (int i = 0; i < MOVIE_COUNT; i++) {
@@ -57,6 +60,23 @@ int main() {
 
     cout << "Rating saved for "
          << movies[movieNumber - 1].title << "." << endl;
+
+    cout << "\n========== MOVIE RATINGS ==========" << endl;
+
+    for (int i = 0; i < MOVIE_COUNT; i++) {
+        cout << i + 1 << ". " << movies[i].title << " - ";
+
+        if (movies[i].ratingCount == 0) {
+            cout << "Not rated yet" << endl;
+        } else {
+            double average =
+                static_cast<double>(movies[i].ratingTotal)
+                / movies[i].ratingCount;
+
+            cout << "Average: " << average << "/5 ("
+                 << movies[i].ratingCount << " ratings)" << endl;
+        }
+    }
 
     return 0;
 }
