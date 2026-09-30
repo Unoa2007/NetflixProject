@@ -78,5 +78,57 @@ int main() {
         }
     }
 
+    cout << "\nChoose a genre:\n1. Action\n2. Comedy\n3. Drama" << endl;
+    cout << "Enter genre (1-3): ";
+
+    int genreChoice = getChoice(1, 3);
+    string chosenGenre;
+
+    if (genreChoice == 1)
+        chosenGenre = "Action";
+    else if (genreChoice == 2)
+        chosenGenre = "Comedy";
+    else
+        chosenGenre = "Drama";
+
+    int bestIndex = -1;
+    double bestAverage = -1.0;
+
+    for (int i = 0; i < MOVIE_COUNT; i++) {
+        if (movies[i].genre == chosenGenre &&
+            movies[i].ratingCount > 0) {
+
+            double average =
+                static_cast<double>(movies[i].ratingTotal)
+                / movies[i].ratingCount;
+
+            if (average > bestAverage) {
+                bestAverage = average;
+                bestIndex = i;
+            }
+        }
+    }
+
+    if (bestIndex == -1) {
+        cout << "No ratings for "
+             << chosenGenre << " yet." << endl;
+
+        cout << "Try this sample title: ";
+
+        for (int i = 0; i < MOVIE_COUNT; i++) {
+            if (movies[i].genre == chosenGenre) {
+                cout << movies[i].title << endl;
+                break;
+            }
+        }
+    } else {
+        cout << "Recommended: "
+             << movies[bestIndex].title << endl;
+
+        cout << "Genre: " << chosenGenre
+             << " | Average rating: "
+             << bestAverage << "/5" << endl;
+    }
+
     return 0;
 }
