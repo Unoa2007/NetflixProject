@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <limits>
 #include <string>
+#include <cstdlib>
 using namespace std;
 
 const int MOVIE_COUNT = 6;
@@ -28,6 +29,12 @@ int getChoice(int minimum, int maximum) {
             return choice;
         }
     }
+}
+
+void pauseAndClear() {
+    cout << "\n";
+    system("pause");
+    system("cls");
 }
 
 int main() {
@@ -61,6 +68,8 @@ int main() {
     cout << "Rating saved for "
          << movies[movieNumber - 1].title << "." << endl;
 
+    pauseAndClear();
+
     cout << "\n========== MOVIE RATINGS ==========" << endl;
 
     for (int i = 0; i < MOVIE_COUNT; i++) {
@@ -77,6 +86,8 @@ int main() {
                  << movies[i].ratingCount << " ratings)" << endl;
         }
     }
+
+    pauseAndClear();
 
     cout << "\nChoose a genre:\n1. Action\n2. Comedy\n3. Drama" << endl;
     cout << "Enter genre (1-3): ";
@@ -129,6 +140,8 @@ int main() {
              << " | Average rating: "
              << bestAverage << "/5" << endl;
     }
+
+    pauseAndClear();
 
     return 0;
 }
